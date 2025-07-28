@@ -14,7 +14,9 @@ import { FormsModule } from '@angular/forms'
 
 export class AppComponent implements OnInit {
   books: Book[] = [];
-  newBook: Partial<Book> = {};
+  newBook: Partial<Book> = {
+    status: false
+  };
   editBook: Book | null = null;
 
   constructor(private bookService: BookService) { }

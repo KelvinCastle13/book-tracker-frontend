@@ -1,29 +1,47 @@
-<h1>📚 Book Tracker</h1>
+<div class="app-background">
+  <h1>📚 Book Tracker</h1>
 
-<div>
-  <h3>Add New Book</h3>
-  <input placeholder="Title" [(ngModel)]="newBook.title" />
-  <input placeholder="Author" [(ngModel)]="newBook.author" />
-  <input placeholder="Genre" [(ngModel)]="newBook.genre" />
-  <button (click)="createBook()">Add Book</button>
+  <div>
+    <h3>Add New Book</h3>
+    <input placeholder="Title" [(ngModel)]="newBook.title" />
+    <input placeholder="Author" [(ngModel)]="newBook.author" />
+    <input placeholder="Genre" [(ngModel)]="newBook.genre" />
+
+    <div class="status-group">
+      <!-- <input type="checkbox" [(ngModel)]="newBook.status" /> -->
+      <!-- <span>{{ newBook.status ? '[Read]' : '[Unread]' }}</span> -->
+    </div>
+
+    <button (click)="createBook()">Add Book</button>
+  </div>
+
+  <hr />
+
+  <ul class="card-body">
+    <li *ngFor="let book of books">
+      <div *ngIf="editBook?.id !== book.id">
+        <strong>{{ book.title }}</strong> by {{ book.author }} ({{ book.genre }})
+
+        <span *ngIf="book.status" style="color: green">[Read]</span>
+        <span *ngIf="!book.status" style="color: gray">[Unread]</span>
+
+        <button (click)="startEdit(book)">Edit</button>
+        <button (click)="deleteBook(book.id)">Delete</button>
+      </div>
+
+      <div *ngIf="editBook?.id === book.id && editBook as eb">
+        <input [(ngModel)]="eb.title" />
+        <input [(ngModel)]="eb.author" />
+        <input [(ngModel)]="eb.genre" />
+
+        <div class="status-group">
+          <input type="checkbox" [(ngModel)]="eb.status" />
+          <span>{{ eb.status ? '[Read]' : '[Unread]' }}</span>
+        </div>
+
+        <button (click)="saveEdit()">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </div>
+    </li>
+  </ul>
 </div>
-
-<hr />
-
-<ul>
-  <li *ngFor="let book of books">
-    <div *ngIf="editBook?.id !== book.id">
-      <strong>{{ book.title }}</strong> by {{ book.author }} ({{ book.genre }})
-      <button (click)="startEdit(book)">Edit</button>
-      <button (click)="deleteBook(book.id)">Delete</button>
-    </div>
-
-    <div *ngIf="editBook?.id === book.id && editBook as eb">
-      <input [(ngModel)]="eb.title" />
-      <input [(ngModel)]="eb.author" />
-      <input [(ngModel)]="eb.genre" />
-      <button (click)="saveEdit()">Save</button>
-      <button (click)="cancelEdit()">Cancel</button>
-    </div>
-  </li>
-</ul>

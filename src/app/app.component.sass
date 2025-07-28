@@ -1,0 +1,90 @@
+body
+  margin: 0
+  padding: 0
+  font-family: Arial, sans-serif
+
+.app-background
+  min-height: 100vh
+  background-image: url("https://www.shutterstock.com/image-vector/magical-books-pattern-background-vector-600nw-2504398427.jpg")
+  background-size: auto
+  background-position: top left
+  background-repeat: repeat
+  padding: 2rem
+
+h1
+  text-align: center
+  margin-top: 1rem
+  color: #7243b0ff;
+
+h3
+  color: #724aa7ff;
+
+div
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin-bottom: 2rem
+
+input[type="text"],
+input[type="checkbox"]
+  margin: 0.25rem
+  padding: 0.5rem
+  font-size: 1rem
+  width: 250px
+  max-width: 90%
+
+button
+  margin: 0.25rem
+  padding: 0.5rem 1rem
+  font-size: 1rem
+  cursor: pointer
+
+ul
+  font-size: 25px
+  list-style: none
+  padding: 0
+  display: flex
+  flex-direction: column
+  align-items: center
+
+li
+  background: hsla(0, 0%, 98%, 0.65)
+  border: 1px solid #ccc
+  border-radius: 5px
+  margin: 0.5rem 0
+  padding: .3rem
+  width: 80%
+  max-width: 600px
+  box-shadow: 0 2px 5px rgba(18, 17, 17, 0.05)
+  color: rgba(0, 0, 0, 1);
+
+li div
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
+
+label
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+span
+  font-weight: bold
+
+span[style*="green"]
+  color: green
+
+span[style*="gray"]
+  color: gray
+
+.status-group
+  display: flex
+  align-items: center
+  gap: 0.25rem // smaller gap between checkbox and status label
+  margin-top: 0.25rem
+
+label
+  display: flex
+  align-items: center
+  gap: 0.25rem
+  font-weight: normal
