@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService, Book } from './service/book.service';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
@@ -30,11 +29,21 @@ export class AppComponent implements OnInit {
   }
 
   createBook() {
+    console.log('Sending new book:', this.newBook);
+
     if (this.newBook.title && this.newBook.author && this.newBook.genre) {
-      this.bookService.addBook(this.newBook as Book).subscribe(() => {
-        this.newBook = {};
-        this.loadBooks();
+      this.bookService.addBook(this.newBook as Book).subscribe({
+        next: () => {
+          this.newBook = {};
+          this.loadBooks();
+        },
+        error: (error) => {
+          console.error('Server returned 422:', error);
+          alert('Validation Error: ' + JSON.stringify(error.error, null, 2));
+        }
       });
+    } else {
+      console.warn('Missing required fields:', this.newBook);
     }
   }
 

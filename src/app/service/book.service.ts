@@ -10,6 +10,13 @@ export interface Book {
   status: boolean;
 }
 
+export interface BookCreate {
+  title: string;
+  author: string;
+  genre: string;
+  status: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +30,7 @@ export class BookService {
     return this.http.get<Book[]>(`${this.apiUrl}/`);
   }
 
-  addBook(book: Book): Observable<Book> {
+  addBook(book: BookCreate): Observable<Book> {
     return this.http.post<Book>(`${this.apiUrl}/books/`, book);
   }
 
